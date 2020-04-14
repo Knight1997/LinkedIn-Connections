@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Alert from "./components/Alert";
+import ConnectionsForm from "./components/ConnectionsForm";
+import ConnectionsList from "./components/ConnectionsList";
+import uuid from "uuid/v4";
+const initalConnections = [
+  { id: uuid(), Name: "Ram", Company: "Tower" },
+  { id: uuid(), Name: "jam", Company: "Estee" },
+  { id: uuid(), Name: "sam", Company: "De Shaw" },
+];
 
+//console.log(initalConnections);
 function App() {
+  const [Connections, setConnections] = useState(initalConnections);
+  console.log(Connections);
+  console.log(setConnections);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Alert />
+      <ConnectionsForm />
+      <ConnectionsList />
+    </>
   );
 }
 
