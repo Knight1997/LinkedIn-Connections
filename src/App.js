@@ -16,6 +16,7 @@ function App() {
   const [Connections, setConnections] = useState(initalConnections);
   const [PersonName, setPersonName] = useState("");
   const [CompanyName, setCompanyName] = useState("");
+  const [alert, setAlert] = useState({ show: false });
 
   const handlePersonName = (e) => {
     setPersonName(e.target.value);
@@ -25,9 +26,16 @@ function App() {
     setCompanyName(e.target.value);
   };
 
+  const handleAlert = ({ type, text }) => {
+    setAlert({ show: true, type: type, text: text });
+    setTimeout(() => {
+      setAlert({ show: false });
+    }, 7000);
+  };
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    if(PersonName === "" || CompanyName === ""){
+    if (PersonName === "" || CompanyName === "") {
+      handleAlert({ type: "danger", text: "Item Can't be added!" });
       return;
     }
     const newConnection = {
@@ -39,9 +47,11 @@ function App() {
     setConnections([...Connections, newConnection]);
     setCompanyName("");
     setPersonName("");
+    handleAlert({ type: "success", text: "Item added!" });
   };
   return (
     <>
+      {alert.show && <Alert type={alert.type} text={alert.text} />}
       <Alert />
       <h1>LinkedIn Connections</h1>
       <main className="App">
