@@ -4,7 +4,6 @@ import { MdDelete } from "react-icons/md";
 export default function ConnectionsList({ Connections }) {
   return (
     <div>
-      hello ConnectionsList
       <ul className="list">
         {Connections.map((connection) => {
           return <Profile key={connection.id} connection={connection} />;

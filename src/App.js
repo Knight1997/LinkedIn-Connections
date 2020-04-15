@@ -14,15 +14,45 @@ const initalConnections = [
 //console.log(initalConnections);
 function App() {
   const [Connections, setConnections] = useState(initalConnections);
-  // console.log(Connections);
-  // console.log(setConnections);
+  const [PersonName, setPersonName] = useState("");
+  const [CompanyName, setCompanyName] = useState("");
+
+  const handlePersonName = (e) => {
+    setPersonName(e.target.value);
+  };
+
+  const handleCompanyName = (e) => {
+    setCompanyName(e.target.value);
+  };
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    if(PersonName === "" || CompanyName === ""){
+      return;
+    }
+    const newConnection = {
+      id: uuid(),
+      Name: PersonName,
+      Company: CompanyName,
+      exp: 1,
+    };
+    setConnections([...Connections, newConnection]);
+    setCompanyName("");
+    setPersonName("");
+  };
   return (
     <>
       <Alert />
       <h1>LinkedIn Connections</h1>
       <main className="App">
-        <ConnectionsForm />
-        <ConnectionsList Connections = {Connections}/>
+        <ConnectionsForm
+          PersonName={PersonName}
+          CompanyName={CompanyName}
+          handleCompanyName={handleCompanyName}
+          handlePersonName={handlePersonName}
+          handleOnSubmit={handleOnSubmit}
+        />
+        <ConnectionsList Connections={Connections} />
       </main>
       <h1>
         Total Connections:{" "}
