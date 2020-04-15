@@ -49,6 +49,18 @@ function App() {
     setPersonName("");
     handleAlert({ type: "success", text: "Item added!" });
   };
+
+  const handleClearList = () => {
+    setConnections([]);
+  };
+  const handleEditProfile = (id) => {
+    console.log(`Item Edited: ${id}`);
+  };
+
+  const handleDeleteProfile = (id) => {
+    console.log(`Item Deleted: ${id}`);
+  };
+
   return (
     <>
       {alert.show && <Alert type={alert.type} text={alert.text} />}
@@ -62,7 +74,12 @@ function App() {
           handlePersonName={handlePersonName}
           handleOnSubmit={handleOnSubmit}
         />
-        <ConnectionsList Connections={Connections} />
+        <ConnectionsList
+          Connections={Connections}
+          handleClearList={handleClearList}
+          handleDeleteProfile = {handleDeleteProfile}
+          handleEditProfile = {handleEditProfile}
+        />
       </main>
       <h1>
         Total Connections:{" "}
