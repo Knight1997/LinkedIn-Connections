@@ -6,6 +6,7 @@ export default function ConnectionsForm({
   handlePersonName,
   handleCompanyName,
   handleOnSubmit,
+  edit,
 }) {
   return (
     <form onSubmit={handleOnSubmit}>
@@ -36,7 +37,7 @@ export default function ConnectionsForm({
         </div>
       </div>
       <button type="submit" className="btn">
-        submit
+        {edit ? "edit" : "submit"}
         <MdSend className="btn-icon" />
       </button>
     </form>

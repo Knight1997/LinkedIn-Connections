@@ -17,6 +17,8 @@ function App() {
   const [PersonName, setPersonName] = useState("");
   const [CompanyName, setCompanyName] = useState("");
   const [alert, setAlert] = useState({ show: false });
+  const [edit, setEdit] = useState(false);
+  const [id, setId] = useState(0);
 
   const handlePersonName = (e) => {
     setPersonName(e.target.value);
@@ -38,27 +40,45 @@ function App() {
       handleAlert({ type: "danger", text: "Item Can't be added!" });
       return;
     }
-    const newConnection = {
-      id: uuid(),
-      Name: PersonName,
-      Company: CompanyName,
-      exp: 1,
-    };
-    setConnections([...Connections, newConnection]);
+    if (edit) {
+      let finalConnections = Connections.map((profile) => {
+        return profile.id === id
+          ? { ...profile, Name: PersonName, Company: CompanyName }
+          : profile;
+      });
+      setConnections(finalConnections);
+    } else {
+      const newConnection = {
+        id: uuid(),
+        Name: PersonName,
+        Company: CompanyName,
+        exp: 1,
+      };
+      setConnections([...Connections, newConnection]);
+    }
     setCompanyName("");
     setPersonName("");
-    handleAlert({ type: "success", text: "Item added!" });
+    if (edit) handleAlert({ type: "success", text: "Item Edited!" });
+    else handleAlert({ type: "success", text: "Item added!" });
   };
 
   const handleClearList = () => {
     setConnections([]);
+    handleAlert({ type: "success", text: "All Connections Deleted!" });
   };
-  const handleEditProfile = (id) => {
-    console.log(`Item Edited: ${id}`);
+  const handleEditProfile = (profileId) => {
+    console.log(`Item Edited: ${profileId}`);
+    setEdit(true);
+    setId(profileId);
+    let connection = Connections.find((profile) => profile.id === profileId);
+    setPersonName(connection.Name);
+    setCompanyName(connection.Company);
   };
 
   const handleDeleteProfile = (id) => {
-    console.log(`Item Deleted: ${id}`);
+    let finalConnections = Connections.filter((item) => item.id !== id);
+    setConnections(finalConnections);
+    handleAlert({ type: "success", text: "Item Deleted!" });
   };
 
   return (
@@ -73,12 +93,13 @@ function App() {
           handleCompanyName={handleCompanyName}
           handlePersonName={handlePersonName}
           handleOnSubmit={handleOnSubmit}
+          edit={edit}
         />
         <ConnectionsList
           Connections={Connections}
           handleClearList={handleClearList}
-          handleDeleteProfile = {handleDeleteProfile}
-          handleEditProfile = {handleEditProfile}
+          handleDeleteProfile={handleDeleteProfile}
+          handleEditProfile={handleEditProfile}
         />
       </main>
       <h1>
