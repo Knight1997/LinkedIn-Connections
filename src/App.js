@@ -10,7 +10,8 @@ const initalConnections = [
   { id: uuid(), Name: "jam", Company: "Estee", exp: 5 },
   { id: uuid(), Name: "sam", Company: "De Shaw", exp: 3 },
 ];
-let initialConnections = localStorage.getItem("MyConnections") ? JSON.parse(localStorage.getItem("MyConnections")) : initalConnections;
+let initialConnections = initalConnections;
+// let initialConnections = localStorage.getItem("MyConnections") ? JSON.parse(localStorage.getItem("MyConnections")) : initalConnections;
 
 //console.log(initalConnections);
 function App() {
@@ -22,9 +23,8 @@ function App() {
   const [id, setId] = useState(0);
 
   useEffect(() => {
-    console.log("useEffect Called!");
-    localStorage.setItem("MyConnections",JSON.stringify(Connections));
-  },[Connections])
+    localStorage.setItem("MyConnections", JSON.stringify(Connections));
+  }, [Connections]);
   const handlePersonName = (e) => {
     setPersonName(e.target.value);
   };
@@ -89,7 +89,17 @@ function App() {
     <>
       {alert.show && <Alert type={alert.type} text={alert.text} />}
       <Alert />
-      <h1>LinkedIn Connections</h1>
+      <h1>
+        Linked
+        <span
+          style={{
+            background: "#0e76a8",
+          }}
+        >
+          In
+        </span>{" "}
+        Connections
+      </h1>
       <main className="App">
         <ConnectionsForm
           PersonName={PersonName}

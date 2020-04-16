@@ -6,6 +6,8 @@
   --mainGrey: #9e9e9e;
   --mainRed: #d50000;
   --mainGreen: #4caf50;
+  --linkedIn-Blue: #0e76a8;
+  --mainBlue: #00A0DC;
 }
 * {
   margin: 0;
@@ -61,7 +63,7 @@ label {
 .btn {
   text-decoration: none;
   color: var(--mainWhite);
-  background-color: var(--primaryColor);
+  background-color: var(--linkedIn-Blue);
   text-align: center;
   letter-spacing: 0.5px;
   font-size: 14px;
@@ -120,7 +122,7 @@ label {
   font-weight: 300;
   font-size: 1rem;
   color: var(--mainWhite);
-  background-color: var(--primaryColor);
+  background-color: var(--mainBlue);
   border-radius: 2px;
   padding: 1px 3px;
 }
