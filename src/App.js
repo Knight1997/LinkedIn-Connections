@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Alert from "./components/Alert";
@@ -10,16 +10,21 @@ const initalConnections = [
   { id: uuid(), Name: "jam", Company: "Estee", exp: 5 },
   { id: uuid(), Name: "sam", Company: "De Shaw", exp: 3 },
 ];
+let initialConnections = localStorage.getItem("MyConnections") ? JSON.parse(localStorage.getItem("MyConnections")) : initalConnections;
 
 //console.log(initalConnections);
 function App() {
-  const [Connections, setConnections] = useState(initalConnections);
+  const [Connections, setConnections] = useState(initialConnections);
   const [PersonName, setPersonName] = useState("");
   const [CompanyName, setCompanyName] = useState("");
   const [alert, setAlert] = useState({ show: false });
   const [edit, setEdit] = useState(false);
   const [id, setId] = useState(0);
 
+  useEffect(() => {
+    console.log("useEffect Called!");
+    localStorage.setItem("MyConnections",JSON.stringify(Connections));
+  },[Connections])
   const handlePersonName = (e) => {
     setPersonName(e.target.value);
   };
@@ -67,7 +72,6 @@ function App() {
     handleAlert({ type: "success", text: "All Connections Deleted!" });
   };
   const handleEditProfile = (profileId) => {
-    console.log(`Item Edited: ${profileId}`);
     setEdit(true);
     setId(profileId);
     let connection = Connections.find((profile) => profile.id === profileId);
