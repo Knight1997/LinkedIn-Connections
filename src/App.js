@@ -29,7 +29,7 @@ const initalConnections = [
   },
 ];
 // let initialConnections = initalConnections;
-let initalConnections = [];
+let initialConnections = [];
 let initialConnections = localStorage.getItem("MyConnections") ? JSON.parse(localStorage.getItem("MyConnections")) : initalConnections;
 
 //console.log(initalConnections);
