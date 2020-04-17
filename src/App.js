@@ -5,31 +5,31 @@ import Alert from "./components/Alert";
 import ConnectionsForm from "./components/ConnectionsForm";
 import ConnectionsList from "./components/ConnectionsList";
 import uuid from "uuid/v4";
-const initalConnections = [
-  {
-    id: uuid(),
-    Name: "Ram",
-    Company: "Tower",
-    experience: 1,
-    url: "https://www.linkedin.com/in/utkarshsinha97/",
-  },
-  {
-    id: uuid(),
-    Name: "jam",
-    Company: "Estee",
-    experience: 5,
-    url: "https://www.linkedin.com/in/utkarshsinha97/",
-  },
-  {
-    id: uuid(),
-    Name: "sam",
-    Company: "De Shaw",
-    experience: 3,
-    url: "https://www.linkedin.com/in/utkarshsinha97/",
-  },
-];
+// const initalConnections = [
+//   {
+//     id: uuid(),
+//     Name: "Ram",
+//     Company: "Tower",
+//     experience: 1,
+//     url: "https://www.linkedin.com/in/utkarshsinha97/",
+//   },
+//   {
+//     id: uuid(),
+//     Name: "jam",
+//     Company: "Estee",
+//     experience: 5,
+//     url: "https://www.linkedin.com/in/utkarshsinha97/",
+//   },
+//   {
+//     id: uuid(),
+//     Name: "sam",
+//     Company: "De Shaw",
+//     experience: 3,
+//     url: "https://www.linkedin.com/in/utkarshsinha97/",
+//   },
+// ];
 // let initialConnections = initalConnections;
-let initialConnections = [];
+let initalConnections = [];
 let initialConnections = localStorage.getItem("MyConnections") ? JSON.parse(localStorage.getItem("MyConnections")) : initalConnections;
 
 //console.log(initalConnections);
