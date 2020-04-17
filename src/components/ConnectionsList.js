@@ -6,6 +6,7 @@ export default function ConnectionsList({
   handleClearList,
   handleEditProfile,
   handleDeleteProfile,
+  handleClickURL,
 }) {
   return (
     <div>
@@ -17,6 +18,7 @@ export default function ConnectionsList({
               connection={connection}
               handleDeleteProfile={handleDeleteProfile}
               handleEditProfile={handleEditProfile}
+              handleClickURL = {handleClickURL}
             />
           );
         })}

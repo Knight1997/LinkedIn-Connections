@@ -6,6 +6,10 @@ export default function ConnectionsForm({
   handlePersonName,
   handleCompanyName,
   handleOnSubmit,
+  handleExperience,
+  handleURL,
+  url,
+  experience,
   edit,
 }) {
   return (
@@ -33,6 +37,32 @@ export default function ConnectionsForm({
             placeholder="e.g. Amazon"
             value={CompanyName}
             onChange={handleCompanyName}
+          />
+        </div>
+      </div>
+      <div className="form-center">
+        <div className="form-group">
+          <label htmlFor="LinkedInURL">LinkedIn Profile</label>
+          <input
+            type="text"
+            className="form-control"
+            id="LinkedInURL"
+            name="LinkedInURL"
+            placeholder="profile url"
+            value={url}
+            onChange={handleURL}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="Experience">Experience(Years)</label>
+          <input
+            type="text"
+            className="form-control"
+            id="Experience"
+            name="Experience"
+            placeholder="e.g. 2"
+            value={experience}
+            onChange={handleExperience}
           />
         </div>
       </div>

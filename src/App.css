@@ -7,7 +7,7 @@
   --mainRed: #d50000;
   --mainGreen: #4caf50;
   --linkedIn-Blue: #0e76a8;
-  --mainBlue: #00A0DC;
+  --mainBlue: #00a0dc;
 }
 * {
   margin: 0;
@@ -133,6 +133,14 @@ label {
   font-size: 1.2rem;
   outline: none;
   cursor: pointer;
+}
+.linkedIn-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  outline: none;
+  cursor: pointer;
+  color: var(--linkedIn-Blue);
 }
 .clear-btn {
   color: var(--mainRed);

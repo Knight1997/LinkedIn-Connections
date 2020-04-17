@@ -6,9 +6,27 @@ import ConnectionsForm from "./components/ConnectionsForm";
 import ConnectionsList from "./components/ConnectionsList";
 import uuid from "uuid/v4";
 const initalConnections = [
-  { id: uuid(), Name: "Ram", Company: "Tower", exp: 1 },
-  { id: uuid(), Name: "jam", Company: "Estee", exp: 5 },
-  { id: uuid(), Name: "sam", Company: "De Shaw", exp: 3 },
+  {
+    id: uuid(),
+    Name: "Ram",
+    Company: "Tower",
+    experience: 1,
+    url: "https://www.linkedin.com/in/utkarshsinha97/",
+  },
+  {
+    id: uuid(),
+    Name: "jam",
+    Company: "Estee",
+    experience: 5,
+    url: "https://www.linkedin.com/in/utkarshsinha97/",
+  },
+  {
+    id: uuid(),
+    Name: "sam",
+    Company: "De Shaw",
+    experience: 3,
+    url: "https://www.linkedin.com/in/utkarshsinha97/",
+  },
 ];
 let initialConnections = initalConnections;
 // let initialConnections = localStorage.getItem("MyConnections") ? JSON.parse(localStorage.getItem("MyConnections")) : initalConnections;
@@ -21,6 +39,8 @@ function App() {
   const [alert, setAlert] = useState({ show: false });
   const [edit, setEdit] = useState(false);
   const [id, setId] = useState(0);
+  const [url, setUrl] = useState("");
+  const [experience, setExperience] = useState("");
 
   useEffect(() => {
     localStorage.setItem("MyConnections", JSON.stringify(Connections));
@@ -39,16 +59,35 @@ function App() {
       setAlert({ show: false });
     }, 7000);
   };
+
+  const handleExperience = (e) => {
+    setExperience(e.target.value);
+  };
+  const handleURL = (e) => {
+    setUrl(e.target.value);
+  };
+
+  const handleClickURL = (url) => {
+    const win = window.open(url, '_blank');
+    win.focus();
+  };
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    if (PersonName === "" || CompanyName === "") {
+    if (PersonName === "" || CompanyName === "" || url === "") {
       handleAlert({ type: "danger", text: "Item Can't be added!" });
       return;
     }
     if (edit) {
       let finalConnections = Connections.map((profile) => {
         return profile.id === id
-          ? { ...profile, Name: PersonName, Company: CompanyName }
+          ? {
+              ...profile,
+              Name: PersonName,
+              Company: CompanyName,
+              url: url,
+              experience: experience,
+            }
           : profile;
       });
       setConnections(finalConnections);
@@ -57,12 +96,15 @@ function App() {
         id: uuid(),
         Name: PersonName,
         Company: CompanyName,
-        exp: 1,
+        experience: experience,
+        url: url,
       };
       setConnections([...Connections, newConnection]);
     }
     setCompanyName("");
     setPersonName("");
+    setUrl("");
+    setExperience("");
     if (edit) handleAlert({ type: "success", text: "Item Edited!" });
     else handleAlert({ type: "success", text: "Item added!" });
   };
@@ -77,6 +119,8 @@ function App() {
     let connection = Connections.find((profile) => profile.id === profileId);
     setPersonName(connection.Name);
     setCompanyName(connection.Company);
+    setUrl(connection.url);
+    setExperience(connection.experience);
   };
 
   const handleDeleteProfile = (id) => {
@@ -104,9 +148,13 @@ function App() {
         <ConnectionsForm
           PersonName={PersonName}
           CompanyName={CompanyName}
+          url={url}
+          experience={experience}
           handleCompanyName={handleCompanyName}
           handlePersonName={handlePersonName}
+          handleURL={handleURL}
           handleOnSubmit={handleOnSubmit}
+          handleExperience={handleExperience}
           edit={edit}
         />
         <ConnectionsList
@@ -114,13 +162,14 @@ function App() {
           handleClearList={handleClearList}
           handleDeleteProfile={handleDeleteProfile}
           handleEditProfile={handleEditProfile}
+          handleClickURL={handleClickURL}
         />
       </main>
       <h1>
-        Total Connections:{" "}
+        Total Experience:{" "}
         <span className="total">
           {Connections.reduce((acc, curr) => {
-            return (acc += curr.exp);
+            return (acc += curr.experience ? parseInt(curr.experience) : 0);
           }, 0)}
         </span>
       </h1>
