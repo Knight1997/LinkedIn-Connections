@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/linkedin-connections/static/css/main.c76014da.chunk.css",
+    "main.js": "/linkedin-connections/static/js/main.154e9834.chunk.js",
+    "main.js.map": "/linkedin-connections/static/js/main.154e9834.chunk.js.map",
+    "runtime-main.js": "/linkedin-connections/static/js/runtime-main.1de2778e.js",
+    "runtime-main.js.map": "/linkedin-connections/static/js/runtime-main.1de2778e.js.map",
+    "static/js/2.7397bd3d.chunk.js": "/linkedin-connections/static/js/2.7397bd3d.chunk.js",
+    "static/js/2.7397bd3d.chunk.js.map": "/linkedin-connections/static/js/2.7397bd3d.chunk.js.map",
+    "index.html": "/linkedin-connections/index.html",
+    "precache-manifest.a6736ef38b835e08b3dc5061569f4f09.js": "/linkedin-connections/precache-manifest.a6736ef38b835e08b3dc5061569f4f09.js",
+    "service-worker.js": "/linkedin-connections/service-worker.js",
+    "static/css/main.c76014da.chunk.css.map": "/linkedin-connections/static/css/main.c76014da.chunk.css.map",
+    "static/js/2.7397bd3d.chunk.js.LICENSE.txt": "/linkedin-connections/static/js/2.7397bd3d.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/linkedin-connections/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1de2778e.js",
+    "static/js/2.7397bd3d.chunk.js",
+    "static/css/main.c76014da.chunk.css",
+    "static/js/main.154e9834.chunk.js"
+  ]
+}
