@@ -1,15 +1,22 @@
 import React from "react";
 import Profile from "./Profile";
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdSend } from "react-icons/md";
 export default function ConnectionsList({
   Connections,
   handleClearList,
   handleEditProfile,
   handleDeleteProfile,
   handleClickURL,
+  handleSort,
 }) {
   return (
     <div>
+      <div>
+        <button type="submit" className="btn sort-btn" onClick={handleSort}>
+          Sort by exp
+          <MdSend className="btn-icon" />
+        </button>
+      </div>
       <ul className="list">
         {Connections.map((connection) => {
           return (
@@ -18,7 +25,7 @@ export default function ConnectionsList({
               connection={connection}
               handleDeleteProfile={handleDeleteProfile}
               handleEditProfile={handleEditProfile}
-              handleClickURL = {handleClickURL}
+              handleClickURL={handleClickURL}
             />
           );
         })}

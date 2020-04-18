@@ -5,32 +5,33 @@ import Alert from "./components/Alert";
 import ConnectionsForm from "./components/ConnectionsForm";
 import ConnectionsList from "./components/ConnectionsList";
 import uuid from "uuid/v4";
-// const initalConnections = [
-//   {
-//     id: uuid(),
-//     Name: "Ram",
-//     Company: "Tower",
-//     experience: 1,
-//     url: "https://www.linkedin.com/in/utkarshsinha97/",
-//   },
-//   {
-//     id: uuid(),
-//     Name: "jam",
-//     Company: "Estee",
-//     experience: 5,
-//     url: "https://www.linkedin.com/in/utkarshsinha97/",
-//   },
-//   {
-//     id: uuid(),
-//     Name: "sam",
-//     Company: "De Shaw",
-//     experience: 3,
-//     url: "https://www.linkedin.com/in/utkarshsinha97/",
-//   },
-// ];
-// let initialConnections = initalConnections;
-let initalConnections = [];
-let initialConnections = localStorage.getItem("MyConnections") ? JSON.parse(localStorage.getItem("MyConnections")) : initalConnections;
+const initalConnections = [
+  {
+    id: uuid(),
+    Name: "Ram",
+    Company: "Tower",
+    experience: 1,
+    url: "https://www.linkedin.com/in/utkarshsinha97/",
+  },
+  {
+    id: uuid(),
+    Name: "jam",
+    Company: "Estee",
+    experience: 5,
+    url: "https://www.linkedin.com/in/utkarshsinha97/",
+  },
+  {
+    id: uuid(),
+    Name: "sam",
+    Company: "De Shaw",
+    experience: 3,
+    url: "https://www.linkedin.com/in/utkarshsinha97/",
+  },
+];
+let initialConnections = initalConnections;
+// let initialConnections = localStorage.getItem("MyConnections")
+//   ? JSON.parse(localStorage.getItem("MyConnections"))
+//   : initalConnections;
 
 //console.log(initalConnections);
 function App() {
@@ -46,6 +47,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem("MyConnections", JSON.stringify(Connections));
   }, [Connections]);
+
   const handlePersonName = (e) => {
     setPersonName(e.target.value);
   };
@@ -64,13 +66,23 @@ function App() {
   const handleExperience = (e) => {
     setExperience(e.target.value);
   };
+
   const handleURL = (e) => {
     setUrl(e.target.value);
   };
 
   const handleClickURL = (url) => {
-    const win = window.open(url, '_blank');
+    const win = window.open(url, "_blank");
     win.focus();
+  };
+
+  const handleSort = () => {
+    const finalConnections = [...Connections];
+    finalConnections.sort(
+      (connection_1, connection_2) =>
+        parseInt(connection_1.experience) - parseInt(connection_2.experience),
+      setConnections(finalConnections)
+    );
   };
 
   const handleOnSubmit = (e) => {
@@ -92,6 +104,7 @@ function App() {
           : profile;
       });
       setConnections(finalConnections);
+      setEdit(false);
     } else {
       const newConnection = {
         id: uuid(),
@@ -100,7 +113,7 @@ function App() {
         experience: experience,
         url: url,
       };
-      setConnections([...Connections, newConnection]);
+      setConnections([newConnection, ...Connections]);
     }
     setCompanyName("");
     setPersonName("");
@@ -164,6 +177,7 @@ function App() {
           handleDeleteProfile={handleDeleteProfile}
           handleEditProfile={handleEditProfile}
           handleClickURL={handleClickURL}
+          handleSort={handleSort}
         />
       </main>
       <h1>
