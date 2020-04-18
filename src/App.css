@@ -48,6 +48,10 @@ label {
   text-transform: capitalize;
 }
 
+.dropDownSortList{
+  display: none;
+}
+
 .form-control {
   background-color: transparent;
   border: none;
@@ -89,6 +93,11 @@ label {
   margin-left: 0.75rem;
   font-size: 1.2rem;
 }
+.sort-btn {
+  float: right;
+  margin-right: 2.5rem;
+}
+
 .list {
   margin: 2rem 0.75rem 0 0.75rem;
   list-style-type: none;
@@ -118,7 +127,7 @@ label {
   margin-right: 2rem;
   text-transform: capitalize;
 }
-.amount {
+.company {
   font-weight: 300;
   font-size: 1rem;
   color: var(--mainWhite);

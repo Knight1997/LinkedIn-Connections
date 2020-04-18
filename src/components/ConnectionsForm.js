@@ -13,7 +13,7 @@ export default function ConnectionsForm({
   edit,
 }) {
   return (
-    <form onSubmit={handleOnSubmit}>
+    <form autocomplete="off" onSubmit={handleOnSubmit}>
       <div className="form-center">
         <div className="form-group">
           <label htmlFor="PersonName">Person Name</label>

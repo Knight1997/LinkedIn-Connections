@@ -1,6 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
 import { MdDelete, MdSend } from "react-icons/md";
+
 export default function ConnectionsList({
   Connections,
   handleClearList,
@@ -17,6 +18,7 @@ export default function ConnectionsList({
           <MdSend className="btn-icon" />
         </button>
       </div>
+      <br />
       <ul className="list">
         {Connections.map((connection) => {
           return (

@@ -171,14 +171,14 @@ function App() {
           handleExperience={handleExperience}
           edit={edit}
         />
-        <ConnectionsList
+        {Connections.length>0 && <ConnectionsList
           Connections={Connections}
           handleClearList={handleClearList}
           handleDeleteProfile={handleDeleteProfile}
           handleEditProfile={handleEditProfile}
           handleClickURL={handleClickURL}
           handleSort={handleSort}
-        />
+        />}
       </main>
       <h1>
         Total Experience:{" "}

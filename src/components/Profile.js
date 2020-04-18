@@ -21,7 +21,7 @@ export default function Profile({
             <AiFillLinkedin />
           </button>
         </span>
-        <span className="amount">{Company}</span>
+        <span className="company">{Company}</span>
       </div>
       <div>
         <button
